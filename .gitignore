@@ -1,0 +1,9 @@
+/postgres-keycloak-data
+.env
+**/node_modules/
+**/build/
+**/bin/
+**/obj/
+**/__pycache__/
+airflow/logs/
+2024__yandex-architecture-sso.code-workspace

@@ -1,0 +1,180 @@
+name: bionicpro
+
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.9.1-python3.9
+  environment: &airflow-environment
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow_local@airflow_db/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'false'
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__WEBSERVER__SECRET_KEY: bionicpro-local-learning-webserver-key
+    AIRFLOW_CONN_CRM: postgresql://crm:crm_local@crm_db:5432/crm
+    AIRFLOW_CONN_TELEMETRY: postgresql://telemetry:telemetry_local@telemetry_db:5432/telemetry
+    CLICKHOUSE_URL: http://clickhouse:8123
+    CLICKHOUSE_USER: etl
+    CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-etl_local}
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags:ro
+    - airflow_logs:/opt/airflow/logs
+  depends_on:
+    airflow_db:
+      condition: service_healthy
+    crm_db:
+      condition: service_healthy
+    telemetry_db:
+      condition: service_healthy
+    clickhouse:
+      condition: service_healthy
+
+services:
+  keycloak_db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: keycloak_db
+      POSTGRES_USER: keycloak_user
+      POSTGRES_PASSWORD: keycloak_password
+    volumes:
+      - keycloak_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U keycloak_user -d keycloak_db']
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db:5432/keycloak_db
+      KC_DB_USERNAME: keycloak_user
+      KC_DB_PASSWORD: keycloak_password
+    command: [start-dev, --import-realm]
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
+    ports:
+      - '127.0.0.1:18080:8080'
+    depends_on:
+      keycloak_db:
+        condition: service_healthy
+
+  crm_db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: crm
+      POSTGRES_USER: crm
+      POSTGRES_PASSWORD: crm_local
+    volumes:
+      - crm_data:/var/lib/postgresql/data
+      - ./db/crm:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U crm -d crm']
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  telemetry_db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: telemetry
+      POSTGRES_USER: telemetry
+      POSTGRES_PASSWORD: telemetry_local
+      TZ: UTC
+    volumes:
+      - telemetry_data:/var/lib/postgresql/data
+      - ./db/telemetry:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U telemetry -d telemetry']
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    environment:
+      CLICKHOUSE_DB: reports
+      CLICKHOUSE_USER: etl
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-etl_local}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./clickhouse/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: [CMD-SHELL, 'wget -qO- http://localhost:8123/ping || exit 1']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./api
+    environment:
+      Keycloak__Authority: http://keycloak:8080/realms/reports-realm
+      Keycloak__Issuer: http://localhost:18080/realms/reports-realm
+      ClickHouse__Url: http://clickhouse:8123
+      ClickHouse__User: reports_api
+      ClickHouse__Password: reports_read_local
+    depends_on:
+      - keycloak
+      - clickhouse
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_KEYCLOAK_URL: http://localhost:18080
+        REACT_APP_KEYCLOAK_REALM: reports-realm
+        REACT_APP_KEYCLOAK_CLIENT_ID: reports-frontend
+    ports:
+      - '127.0.0.1:13000:3000'
+    depends_on:
+      - api
+
+  airflow_db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: airflow
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow_local
+    volumes:
+      - airflow_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U airflow -d airflow']
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  airflow-init:
+    <<: *airflow-common
+    environment:
+      <<: *airflow-environment
+      _AIRFLOW_DB_MIGRATE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: admin
+      _AIRFLOW_WWW_USER_PASSWORD: admin
+    command: version
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - '127.0.0.1:18081:8080'
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  keycloak_data:
+  crm_data:
+  telemetry_data:
+  clickhouse_data:
+  airflow_data:
+  airflow_logs:
