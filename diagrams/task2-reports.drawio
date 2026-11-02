@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.8.4">
+    <diagram name="Отчёты BionicPRO" id="Отчёты BionicPRO">
+        <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1900" pageHeight="1580" math="0" shadow="0">
+            <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+                <mxCell id="title" value="&lt;b&gt;BionicPRO — подготовка и получение отчётов&lt;/b&gt;" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#1E2A44;fontSize=28;spacing=8;">
+                    <mxGeometry x="40" y="20" width="1800" height="60" as="geometry" />
+                </mxCell>
+                <mxCell id="scope" value="Реализованный учебный контур. CRM и телеметрия представлены отдельными PostgreSQL с вымышленными данными." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#1E2A44;fontSize=20;spacing=8;">
+                    <mxGeometry x="40" y="85" width="1800" height="65" as="geometry" />
+                </mxCell>
+                <mxCell id="system" value="BionicPRO [Software System]" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#5D6C8C;dashed=1;fontColor=#1E2A44;fontSize=19;align=left;verticalAlign=top;spacing=12;">
+                    <mxGeometry x="360" y="160" width="1460" height="1300" as="geometry" />
+                </mxCell>
+                <object placeholders="1" c4Name="Пилот протеза" c4Type="Person" c4Description="Запрашивает собственный отчёт" label="&lt;b&gt;Пилот протеза&lt;/b&gt;&lt;div&gt;[Person]&lt;/div&gt;" id="pilot" c4Technology="">
+                    <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#6C6477;strokeColor=#4D4D4D;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="30" y="200" width="260" height="160" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="Приложение" c4Type="Container" c4Technology="React / nginx" c4Description="Login, PKCE S256 и кнопка Download Report" label="&lt;b&gt;Приложение&lt;/b&gt;&lt;div&gt;[Container: React / nginx]&lt;/div&gt;&lt;p&gt;Login, PKCE S256 и кнопка Download Report&lt;/p&gt;" id="frontend">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="440" y="230" width="320" height="170" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="SSO" c4Type="Container" c4Technology="Keycloak" c4Description="Аутентификация и роль prothetic_user" label="&lt;b&gt;SSO&lt;/b&gt;&lt;div&gt;[Container: Keycloak]&lt;/div&gt;&lt;p&gt;Аутентификация и роль prothetic_user&lt;/p&gt;" id="kc">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="1050" y="230" width="320" height="170" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="API" c4Type="Container" c4Technology="C# / ASP.NET Core" c4Description="GET /reports: проверка sub и обработанного UTC-дня" label="&lt;b&gt;API&lt;/b&gt;&lt;div&gt;[Container: C# / ASP.NET Core]&lt;/div&gt;&lt;p&gt;GET /reports: проверка sub и обработанного UTC-дня&lt;/p&gt;" id="api">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="440" y="580" width="320" height="180" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="Витрина отчётности" c4Type="Container" c4Technology="ClickHouse" c4Description="Пользователь + протез + день; опубликованный batch_id; доступ API только SELECT" label="&lt;b&gt;Витрина отчётности&lt;/b&gt;&lt;div&gt;[Container: ClickHouse]&lt;/div&gt;&lt;p&gt;Пользователь + протез + день; опубликованный batch_id; доступ API только SELECT&lt;/p&gt;" id="mart">
+                    <mxCell style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="1050" y="580" width="320" height="180" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="ETL" c4Type="Container" c4Technology="Apache Airflow" c4Description="extract → transform → load; @daily, retries; публикация после загрузки" label="&lt;b&gt;ETL&lt;/b&gt;&lt;div&gt;[Container: Apache Airflow]&lt;/div&gt;&lt;p&gt;extract → transform → load; @daily, retries; публикация после загрузки&lt;/p&gt;" id="airflow">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="1050" y="930" width="320" height="180" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="CRM DB" c4Type="Container" c4Technology="PostgreSQL, учебная CRM" c4Description="Клиент, его sub и принадлежащие ему протезы" label="&lt;b&gt;CRM DB&lt;/b&gt;&lt;div&gt;[Container: PostgreSQL, учебная CRM]&lt;/div&gt;&lt;p&gt;Клиент, его sub и принадлежащие ему протезы&lt;/p&gt;" id="crm">
+                    <mxCell style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="440" y="1210" width="320" height="180" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="База телеметрии" c4Type="Container" c4Technology="PostgreSQL" c4Description="Время, протез, движения, миосигнал, заряд" label="&lt;b&gt;База телеметрии&lt;/b&gt;&lt;div&gt;[Container: PostgreSQL]&lt;/div&gt;&lt;p&gt;Время, протез, движения, миосигнал, заряд&lt;/p&gt;" id="telemetry">
+                    <mxCell style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="1050" y="1210" width="320" height="180" as="geometry" />
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="Программа в чипе" c4Type="Container" c4Technology="C++ / ESP32" c4Description="Контекст кейса: управление локально. В стенде телеметрия заменена тестовыми записями." label="&lt;b&gt;Программа в чипе&lt;/b&gt;&lt;div&gt;[Container: C++ / ESP32]&lt;/div&gt;&lt;p&gt;Контекст кейса: управление локально. В стенде телеметрия заменена тестовыми записями.&lt;/p&gt;" id="chip">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];;fontSize=17;fontColor=#FFFFFF;fillColor=#1B2B59;strokeColor=#1B2B59;spacing=12;" parent="1" vertex="1">
+                        <mxGeometry x="1480" y="1210" width="280" height="180" as="geometry" />
+                    </mxCell>
+                </object>
+                <mxCell id="edge-1" source="pilot" target="frontend" value="Использует" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-2" source="frontend" target="kc" value="OIDC Code + PKCE S256" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-3" source="frontend" target="api" value="GET /reports + Bearer token" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-4" source="api" target="mart" value="SELECT по sub / дню / batch" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-5" source="airflow" target="mart" value="Готовые строки, затем отметка готовности" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-6" source="crm" target="airflow" value="Extract: владельцы и протезы" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="600" y="1150" />
+                            <mxPoint x="980" y="1150" />
+                            <mxPoint x="980" y="1020" />
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge-7" source="telemetry" target="airflow" value="Extract: [data_interval_start, data_interval_end)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-8" source="chip" target="telemetry" value="4G" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="note" value="По умолчанию отчёт за вчера (UTC). Без входа — 401; без роли или при запросе чужого sub — 403; день не опубликован — 409. Отсутствие измерений за опубликованный день даёт пустой собственный отчёт." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#1E2A44;fontSize=19;spacing=8;">
+                    <mxGeometry x="40" y="1470" width="1780" height="90" as="geometry" />
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="DAG и витрина" id="DAG и витрина">
+        <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1900" pageHeight="1180" math="0" shadow="0">
+            <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+                <mxCell id="title" value="&lt;b&gt;ETL и публикация витрины&lt;/b&gt;" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#1E2A44;fontSize=28;spacing=8;">
+                    <mxGeometry x="40" y="20" width="1800" height="60" as="geometry" />
+                </mxCell>
+                <mxCell id="extract" value="&lt;b&gt;extract&lt;/b&gt;&lt;br&gt;&lt;br&gt;Читает CRM и телеметрию за завершённый UTC-день. XCom передаёт только путь к файлу." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBDAF0;fontColor=#1E2A44;fontSize=17;spacing=10;">
+                    <mxGeometry x="60" y="170" width="520" height="190" as="geometry" />
+                </mxCell>
+                <mxCell id="transform" value="&lt;b&gt;transform&lt;/b&gt;&lt;br&gt;&lt;br&gt;Соединяет по prosthesis_id; проверяет владельца; считает движения и средние signal/battery." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBDAF0;fontColor=#1E2A44;fontSize=17;spacing=10;">
+                    <mxGeometry x="670" y="170" width="520" height="190" as="geometry" />
+                </mxCell>
+                <mxCell id="load" value="&lt;b&gt;load&lt;/b&gt;&lt;br&gt;&lt;br&gt;Пишет usage_reports с batch_id, затем report_periods. Повтор не удваивает готовый отчёт." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBDAF0;fontColor=#1E2A44;fontSize=17;spacing=10;">
+                    <mxGeometry x="1280" y="170" width="520" height="190" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-1" source="extract" target="transform" value="source.json" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-2" source="transform" target="load" value="report.json" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="usage" value="&lt;b&gt;usage_reports&lt;/b&gt;&lt;br&gt;&lt;br&gt;user_id · report_date · prosthesis_id&lt;br&gt;client_name · movement_count&lt;br&gt;average_signal · average_battery&lt;br&gt;batch_id · version&lt;br&gt;&lt;br&gt;ReplacingMergeTree(version)&lt;br&gt;PARTITION BY месяц&lt;br&gt;ORDER BY (user_id, report_date, prosthesis_id, batch_id)" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBDAF0;fontColor=#1E2A44;fontSize=17;spacing=10;">
+                    <mxGeometry x="160" y="500" width="700" height="360" as="geometry" />
+                </mxCell>
+                <mxCell id="periods" value="&lt;b&gt;report_periods&lt;/b&gt;&lt;br&gt;&lt;br&gt;report_date · batch_id · version&lt;br&gt;&lt;br&gt;ReplacingMergeTree(version)&lt;br&gt;ORDER BY report_date&lt;br&gt;&lt;br&gt;Публикация последним действием DAG.&lt;br&gt;API сначала выбирает batch_id для дня." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBDAF0;fontColor=#1E2A44;fontSize=17;spacing=10;">
+                    <mxGeometry x="1040" y="500" width="700" height="360" as="geometry" />
+                </mxCell>
+                <mxCell id="edge-3" source="load" target="usage" value="1. Загрузка строк" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1540" y="420" />
+                            <mxPoint x="510" y="420" />
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge-4" source="load" target="periods" value="2. Публикация дня" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5D6C8C;strokeWidth=2;fontSize=15;fontColor=#1E2A44;labelBackgroundColor=#FFFFFF;">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="grain" value="Зерно строки: один пользователь, один протез, один UTC-день. batch_id — версия расчёта дня. FINAL устраняет повторы одного batch; новый batch публикуется отдельной записью после успешной загрузки." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#1E2A44;fontSize=21;spacing=8;">
+                    <mxGeometry x="100" y="950" width="1680" height="100" as="geometry" />
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
